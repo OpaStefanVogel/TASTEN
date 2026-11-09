@@ -1,0 +1,12 @@
+{
+    "name": "TASTEN",
+    "description": "verschiedene Tasten sollen in einem tcl tk Fenster an unterschiedliche Funktionen angeschlossen werden können",
+    "version": "0.0.1",
+    "dependencies": {},
+    "node-red": {
+        "settings": {
+            "flowFile": "flows_TASTEN.json",
+            "credentialsFile": "flows_TASTEN_cred.json"
+        }
+    }
+}
