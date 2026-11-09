@@ -2,7 +2,10 @@
     "name": "TASTEN",
     "description": "verschiedene Tasten sollen in einem tcl tk Fenster an unterschiedliche Funktionen angeschlossen werden können",
     "version": "0.0.1",
-    "dependencies": {},
+    "dependencies": {
+        "node-red-node-daemon": "0.6.0",
+        "node-red-node-pi-gpio": "2.0.7"
+    },
     "node-red": {
         "settings": {
             "flowFile": "flows_TASTEN.json",
