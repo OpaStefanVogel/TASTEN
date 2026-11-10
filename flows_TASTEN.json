@@ -840,10 +840,6 @@
         "props": [
             {
                 "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
             }
         ],
         "repeat": "",
@@ -851,7 +847,7 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "ls",
+        "payload": "ls -a",
         "payloadType": "str",
         "x": 910,
         "y": 1080,
@@ -870,9 +866,9 @@
         "args": "pi@192.168.1.119",
         "autorun": true,
         "cr": true,
-        "redo": true,
+        "redo": false,
         "op": "string",
-        "closer": "SIGKILL",
+        "closer": "SIGTERM",
         "x": 1090,
         "y": 1120,
         "wires": [
@@ -949,6 +945,89 @@
         "wires": [
             [
                 "f8e8885a07a583c5"
+            ]
+        ]
+    },
+    {
+        "id": "3339127f2839b5d2",
+        "type": "inject",
+        "z": "cd360236561f340b",
+        "name": "restart",
+        "props": [
+            {
+                "p": "start",
+                "v": "",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 870,
+        "y": 1260,
+        "wires": [
+            [
+                "9f359136bed6a345"
+            ]
+        ]
+    },
+    {
+        "id": "a9673b425b37ebc9",
+        "type": "inject",
+        "z": "cd360236561f340b",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "x": 470,
+        "y": 500,
+        "wires": [
+            [
+                "86c59b137bf2e601"
+            ]
+        ]
+    },
+    {
+        "id": "6390288158558670",
+        "type": "inject",
+        "z": "cd360236561f340b",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 650,
+        "y": 500,
+        "wires": [
+            [
+                "86c59b137bf2e601"
             ]
         ]
     }
