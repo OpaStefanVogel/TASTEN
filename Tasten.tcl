@@ -7,15 +7,33 @@ grid [label .l0 -text ""] \
   [label .l3h -text T3↑] [label .l3l -text T3↓] \
   [label .l4h -text T4↑] [label .l4l -text T4↓]
 
-foreach i {1 2 3 4} {
+foreach i {1 2 3 4 5 6} {
   label .l${i} -text "LED ein"
   foreach j {1 2 3 4} {
     checkbutton .b${i}_t${j}h -command speichern
-    checkbutton .b${i}_t${j]l -command speichern
+    checkbutton .b${i}_t${j}l -command speichern
     }
   grid .l${i} .b${i}_t1h .b${i}_t1l .b${i}_t2h .b${i}_t2l .b${i}_t3h .b${i}_t3l .b${i}_t4h .b${i}_t4l
   }
 
+grid [label .k0 -text ""] \
+  [label .k1 -text T0] \
+  [label .k2 -text T1] \
+  [label .k3 -text T2] \
+  [label .k4 -text T3]
+
+set T0 0
+set T1 1
+set T2 2
+set T3 3
+
+foreach i {0 1 2 3 4 5} {
+  label .t${i} -text V${i}.txt
+  foreach j {0 1 2 3} {
+    radiobutton .c${i}_t${j} -variable T${j} -value ${i} -command speichern
+    }
+  grid .t${i} .c${i}_t0 .c${i}_t1 .c${i}_t2 .c${i}_t3
+  }
 
 
 #grid configure .l1 .l2 .l3 .l4 -columnspan 2
