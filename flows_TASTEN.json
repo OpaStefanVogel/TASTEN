@@ -8,6 +8,16 @@
         "env": []
     },
     {
+        "id": "b2520219e4135076",
+        "type": "websocket-client",
+        "path": "ws://192.168.1.121:1880/ws/motoren",
+        "tls": "",
+        "wholemsg": "false",
+        "hb": "0",
+        "subprotocol": "",
+        "headers": []
+    },
+    {
         "id": "752c45504b4f364a",
         "type": "rpi-gpio out",
         "z": "cd360236561f340b",
@@ -467,7 +477,7 @@
         "repeat": "",
         "crontab": "",
         "once": true,
-        "onceDelay": 0.1,
+        "onceDelay": "10",
         "topic": "",
         "x": 610,
         "y": 740,
@@ -665,18 +675,18 @@
         "type": "function",
         "z": "cd360236561f340b",
         "name": "function 10",
-        "func": "if (msg.payload==0) msg.payload='echo \"Radio an\" >/tmp/tcl_an_nodered.txt';\n  else msg.payload='echo \"Radio aus\" >/tmp/tcl_an_nodered.txt';\nreturn msg;\n",
+        "func": "if (msg.payload==0) msg.payload='Radio an';\n  else msg.payload='Radio aus';\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 450,
+        "x": 430,
         "y": 700,
         "wires": [
             [
-                "9f359136bed6a345"
+                "36573fc2a8e750fa"
             ]
         ]
     },
@@ -694,6 +704,476 @@
         "statusType": "auto",
         "x": 1040,
         "y": 620,
+        "wires": []
+    },
+    {
+        "id": "36573fc2a8e750fa",
+        "type": "template",
+        "z": "cd360236561f340b",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "echo \"{{payload}}\" >/tmp/tcl_an_nodered.txt",
+        "output": "str",
+        "x": 600,
+        "y": 700,
+        "wires": [
+            [
+                "9f359136bed6a345"
+            ]
+        ]
+    },
+    {
+        "id": "a4b5477e18736040",
+        "type": "function",
+        "z": "cd360236561f340b",
+        "name": "function 1",
+        "func": "if (msg.payload==0) msg.payload='Bus62';\n//  else msg.payload='...';\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 760,
+        "wires": [
+            [
+                "36573fc2a8e750fa"
+            ]
+        ]
+    },
+    {
+        "id": "97d63dcc9a690c1b",
+        "type": "file in",
+        "z": "cd360236561f340b",
+        "name": "",
+        "filename": "V3.txt",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 270,
+        "y": 760,
+        "wires": [
+            [
+                "a4b5477e18736040"
+            ]
+        ]
+    },
+    {
+        "id": "749f47ad0478f05c",
+        "type": "watch",
+        "z": "cd360236561f340b",
+        "name": "",
+        "files": "V3.txt",
+        "recursive": "",
+        "x": 110,
+        "y": 760,
+        "wires": [
+            [
+                "97d63dcc9a690c1b"
+            ]
+        ]
+    },
+    {
+        "id": "e6c85aeffb596529",
+        "type": "function",
+        "z": "cd360236561f340b",
+        "name": "function 2",
+        "func": "if (msg.payload==0) msg.payload='Bus31';\n//  else msg.payload='Radio aus';\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 820,
+        "wires": [
+            [
+                "36573fc2a8e750fa"
+            ]
+        ]
+    },
+    {
+        "id": "e608e7df133f3b78",
+        "type": "file in",
+        "z": "cd360236561f340b",
+        "name": "",
+        "filename": "V4.txt",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 270,
+        "y": 820,
+        "wires": [
+            [
+                "e6c85aeffb596529"
+            ]
+        ]
+    },
+    {
+        "id": "40f6e56459cdf113",
+        "type": "watch",
+        "z": "cd360236561f340b",
+        "name": "",
+        "files": "V4.txt",
+        "recursive": "",
+        "x": 110,
+        "y": 820,
+        "wires": [
+            [
+                "e608e7df133f3b78"
+            ]
+        ]
+    },
+    {
+        "id": "d5c3b3c82d44f112",
+        "type": "function",
+        "z": "cd360236561f340b",
+        "name": "function 3",
+        "func": "if (msg.payload==0) msg.payload='sudo shutdown now';\n//  else msg.payload='...';\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 1100,
+        "wires": [
+            [
+                "f8e8885a07a583c5"
+            ]
+        ]
+    },
+    {
+        "id": "f0806baead1a8cfa",
+        "type": "file in",
+        "z": "cd360236561f340b",
+        "name": "",
+        "filename": "V10.txt",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 280,
+        "y": 1100,
+        "wires": [
+            [
+                "d5c3b3c82d44f112"
+            ]
+        ]
+    },
+    {
+        "id": "6e9e3b1ecf21eaf0",
+        "type": "watch",
+        "z": "cd360236561f340b",
+        "name": "",
+        "files": "V10.txt",
+        "recursive": "",
+        "x": 110,
+        "y": 1100,
+        "wires": [
+            [
+                "f0806baead1a8cfa"
+            ]
+        ]
+    },
+    {
+        "id": "5d72e91f4832d971",
+        "type": "watch",
+        "z": "cd360236561f340b",
+        "name": "",
+        "files": "V5.txt",
+        "recursive": "",
+        "x": 110,
+        "y": 880,
+        "wires": [
+            [
+                "cf224f9aa7e8a201"
+            ]
+        ]
+    },
+    {
+        "id": "cf224f9aa7e8a201",
+        "type": "file in",
+        "z": "cd360236561f340b",
+        "name": "",
+        "filename": "V5.txt",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 270,
+        "y": 880,
+        "wires": [
+            [
+                "b276d41da9cb3b02"
+            ]
+        ]
+    },
+    {
+        "id": "b276d41da9cb3b02",
+        "type": "function",
+        "z": "cd360236561f340b",
+        "name": "function 4",
+        "func": "if (msg.payload==0) msg.payload='Motor_2_plus';\n//  else msg.payload='Motor_Pause';\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 880,
+        "wires": [
+            [
+                "231c102696ae4a8b"
+            ]
+        ]
+    },
+    {
+        "id": "16b432fb78a46ce6",
+        "type": "watch",
+        "z": "cd360236561f340b",
+        "name": "",
+        "files": "V6.txt",
+        "recursive": "",
+        "x": 110,
+        "y": 920,
+        "wires": [
+            [
+                "deb2aa2c25cdebfd"
+            ]
+        ]
+    },
+    {
+        "id": "deb2aa2c25cdebfd",
+        "type": "file in",
+        "z": "cd360236561f340b",
+        "name": "",
+        "filename": "V6.txt",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 270,
+        "y": 920,
+        "wires": [
+            [
+                "c735c097e28feca4"
+            ]
+        ]
+    },
+    {
+        "id": "c735c097e28feca4",
+        "type": "function",
+        "z": "cd360236561f340b",
+        "name": "function 5",
+        "func": "if (msg.payload==0) msg.payload='Motor_2_minus';\n//  else msg.payload='Motor_Pause';\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 920,
+        "wires": [
+            [
+                "231c102696ae4a8b"
+            ]
+        ]
+    },
+    {
+        "id": "af0d8ed90b7a29ec",
+        "type": "watch",
+        "z": "cd360236561f340b",
+        "name": "",
+        "files": "V7.txt",
+        "recursive": "",
+        "x": 110,
+        "y": 960,
+        "wires": [
+            [
+                "0a99c9a29bb6d513"
+            ]
+        ]
+    },
+    {
+        "id": "0a99c9a29bb6d513",
+        "type": "file in",
+        "z": "cd360236561f340b",
+        "name": "",
+        "filename": "V7.txt",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 270,
+        "y": 960,
+        "wires": [
+            [
+                "1daa6578aa1539d4"
+            ]
+        ]
+    },
+    {
+        "id": "1daa6578aa1539d4",
+        "type": "function",
+        "z": "cd360236561f340b",
+        "name": "function 6",
+        "func": "if (msg.payload==0) msg.payload='Motor_1_Kippen';\n//  else msg.payload='Motor_Pause';\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 960,
+        "wires": [
+            [
+                "231c102696ae4a8b"
+            ]
+        ]
+    },
+    {
+        "id": "a71228894db3d2c8",
+        "type": "watch",
+        "z": "cd360236561f340b",
+        "name": "",
+        "files": "V8.txt",
+        "recursive": "",
+        "x": 110,
+        "y": 1000,
+        "wires": [
+            [
+                "681c46ea223cb35f"
+            ]
+        ]
+    },
+    {
+        "id": "681c46ea223cb35f",
+        "type": "file in",
+        "z": "cd360236561f340b",
+        "name": "",
+        "filename": "V8.txt",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 270,
+        "y": 1000,
+        "wires": [
+            [
+                "ce2e6492e7a10fa9"
+            ]
+        ]
+    },
+    {
+        "id": "ce2e6492e7a10fa9",
+        "type": "function",
+        "z": "cd360236561f340b",
+        "name": "function 7",
+        "func": "if (msg.payload==0) msg.payload='Motor_1_Festhalten';\n//  else msg.payload='Motor_Pause';\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 1000,
+        "wires": [
+            [
+                "231c102696ae4a8b"
+            ]
+        ]
+    },
+    {
+        "id": "afb8698dcc1f524c",
+        "type": "watch",
+        "z": "cd360236561f340b",
+        "name": "",
+        "files": "V9.txt",
+        "recursive": "",
+        "x": 110,
+        "y": 1040,
+        "wires": [
+            [
+                "0da1f945cea6ad93"
+            ]
+        ]
+    },
+    {
+        "id": "0da1f945cea6ad93",
+        "type": "file in",
+        "z": "cd360236561f340b",
+        "name": "",
+        "filename": "V9.txt",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 270,
+        "y": 1040,
+        "wires": [
+            [
+                "834268d735c831b9"
+            ]
+        ]
+    },
+    {
+        "id": "834268d735c831b9",
+        "type": "function",
+        "z": "cd360236561f340b",
+        "name": "function 8",
+        "func": "if (msg.payload==0) msg.payload='Motor_1_Loslassen';\n//  else msg.payload='Motor_Pause';\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 1040,
+        "wires": [
+            [
+                "231c102696ae4a8b"
+            ]
+        ]
+    },
+    {
+        "id": "231c102696ae4a8b",
+        "type": "websocket out",
+        "z": "cd360236561f340b",
+        "name": "",
+        "server": "",
+        "client": "b2520219e4135076",
+        "x": 730,
+        "y": 960,
         "wires": []
     }
 ]
