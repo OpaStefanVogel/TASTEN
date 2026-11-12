@@ -10,7 +10,7 @@
     {
         "id": "b2520219e4135076",
         "type": "websocket-client",
-        "path": "ws://192.168.1.121:1880/ws/motoren",
+        "path": "ws://RUBIKsCUBE:1880/ws/motoren",
         "tls": "",
         "wholemsg": "false",
         "hb": "0",
@@ -304,7 +304,7 @@
         "payload": "0",
         "payloadType": "num",
         "x": 130,
-        "y": 300,
+        "y": 320,
         "wires": [
             [
                 "f83f18c9fe58d838"
@@ -333,7 +333,7 @@
         "payload": "1",
         "payloadType": "num",
         "x": 130,
-        "y": 220,
+        "y": 200,
         "wires": [
             [
                 "f83f18c9fe58d838"
@@ -509,7 +509,7 @@
         "payload": "0",
         "payloadType": "num",
         "x": 730,
-        "y": 300,
+        "y": 320,
         "wires": [
             [
                 "86c59b137bf2e601"
@@ -538,7 +538,7 @@
         "payload": "1",
         "payloadType": "num",
         "x": 730,
-        "y": 220,
+        "y": 200,
         "wires": [
             [
                 "86c59b137bf2e601"
@@ -840,7 +840,7 @@
         "type": "function",
         "z": "cd360236561f340b",
         "name": "function 3",
-        "func": "if (msg.payload==0) msg.payload='sudo shutdown now';\n//  else msg.payload='...';\nreturn msg;\n",
+        "func": "if (msg.payload==0) msg.payload='ln -f -r -s V0.txt T0.txt; ln -f -r -s V1.txt T1.txt; ln -f -r -s V2.txt T2.txt; ln -f -r -s V3.txt T3.txt; ln -f -r -s V4.txt T4.txt; ln -f -r -s V5.txt T5.txt; sudo shutdown now';\n//  else msg.payload='...';\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -1172,8 +1172,78 @@
         "name": "",
         "server": "",
         "client": "b2520219e4135076",
-        "x": 730,
+        "x": 720,
         "y": 960,
         "wires": []
+    },
+    {
+        "id": "b25978e32b5ea152",
+        "type": "rpi-gpio in",
+        "z": "cd360236561f340b",
+        "name": "",
+        "pin": "5",
+        "intype": "up",
+        "debounce": "100",
+        "read": true,
+        "bcm": true,
+        "x": 420,
+        "y": 380,
+        "wires": [
+            [
+                "be7824afcdb87118"
+            ]
+        ]
+    },
+    {
+        "id": "44c2f78a18cec25f",
+        "type": "rpi-gpio in",
+        "z": "cd360236561f340b",
+        "name": "",
+        "pin": "21",
+        "intype": "up",
+        "debounce": "100",
+        "read": true,
+        "bcm": true,
+        "x": 720,
+        "y": 380,
+        "wires": [
+            [
+                "e4a83fa3422a7c15"
+            ]
+        ]
+    },
+    {
+        "id": "be7824afcdb87118",
+        "type": "file",
+        "z": "cd360236561f340b",
+        "name": "",
+        "filename": "T4.txt",
+        "filenameType": "str",
+        "appendNewline": false,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 570,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e4a83fa3422a7c15",
+        "type": "file",
+        "z": "cd360236561f340b",
+        "name": "",
+        "filename": "T5.txt",
+        "filenameType": "str",
+        "appendNewline": false,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 870,
+        "y": 380,
+        "wires": [
+            []
+        ]
     }
 ]
